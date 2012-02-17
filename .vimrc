@@ -117,7 +117,9 @@ set key=
 set wildmenu
 
 " Make it easier to complete buffers, open files, etc...
+if has ('wildignorecase')
 set wildignorecase
+endif
 
 " Same as default except that I remove the 'u' option
 set complete=.,w,b,t
