@@ -117,9 +117,7 @@ set key=
 set wildmenu
 
 " Make it easier to complete buffers, open files, etc...
-if has ('wildignorecase')
 set wildignorecase
-endif
 
 " Same as default except that I remove the 'u' option
 set complete=.,w,b,t
@@ -372,8 +370,9 @@ nmap <silent> ,oJ :FSSplitBelow<CR>
 "-----------------------------------------------------------------------------
 if has("gui_running")
   exe "set guifont=" . g:main_font
+  set antialias
   set background=dark
-  colorscheme xoria256
+  colorscheme navajo-night "xoria256
   if !exists("g:vimrcloaded")
       winpos 0 0
       if !&diff
