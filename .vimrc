@@ -82,7 +82,8 @@ set mousehide
 set guicursor=n-v-c:block-Cursor-blinkon0,ve:ver35-Cursor,o:hor50-Cursor,i-ci:ver25-Cursor,r-cr:hor20-Cursor,sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
 
 " set the gui options the way I like
-set guioptions=acg
+"set guioptions=acg
+set guioptions=cg
 
 " Setting this below makes it sow that error messages don't disappear after one second on startup.
 "set debug=msg
