@@ -34,7 +34,8 @@ set noignorecase
 " Set the forward slash to be the slash of note
 set shellslash
 if has("unix")
-    set shell=bash
+    set shell=/bin/bash\ --rcfile\ ~/.bash_profile
+    set shellcmdflag=-ic 
 else
     set shell=ksh.exe
 endif
@@ -42,8 +43,13 @@ endif
 " Make command line two lines high
 set ch=2
 
-" Set visual bell - to suppress beeping
-set vb
+" Set visual bell - to suppress beeping on Mac, and novb for the rest, cause it cause
+" unpleasant flickering on my Ubunutu machine, feel free to suggest a better solution
+if has("mac")
+    set vb
+else 
+    set novb
+endif
 
 " Allow backspacing over indent, eol, and the start of an insert
 set backspace=2
@@ -127,7 +133,15 @@ set complete=.,w,b,t
 set showfulltag
 
 " Set the textwidth to be 80 chars
-set textwidth=80
+" set textwidth=80
+
+" Word wrap without line breaks http://vim.wikia.com/wiki/Word_wrap_without_line_breaks
+:set wrap
+:set linebreak
+:set nolist  " list disables linebreak
+:set textwidth=0
+:set wrapmargin=0
+:set formatoptions+=l
 
 " get rid of the silly characters in separators
 set fillchars = ""
@@ -331,8 +345,8 @@ if has("mac")
   let g:main_font = "Anonymous\\ Pro:h14"
   let g:small_font = "Anonymous\\ Pro:h2"
 else
-  let g:main_font = "Monospace\\ 9"
-  let g:small_font = "Monospace\\ 2"
+"  let g:main_font = "Monospace\\ 9"
+"  let g:small_font = "Monospace\\ 2"
 endif
 
 "-----------------------------------------------------------------------------
@@ -353,6 +367,22 @@ let NERDTreeIgnore=[ '\.ncb$', '\.suo$', '\.vcproj\.RIMNET', '\.obj$',
                    \ '\.embed\.manifest$', '\.embed\.manifest.res$',
                    \ '\.intermediate\.manifest$', '^mt.dep$' ]
 
+map ,r :NERDTreeFind<CR>
+
+"-----------------------------------------------------------------------------
+" FuzzyFinder Settings
+"-----------------------------------------------------------------------------
+let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|class|meta|lock|orig|jar|swp)$|/test/data\.|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
+let g:fuf_splitPathMatching = 0
+let g:fuf_maxMenuWidth = 110
+let g:fuf_timeFormat = ''
+nmap <silent> ,fv :FufFile ~/.vim/<cr>
+nmap <silent> ,fb :FufBuffer<cr>
+nmap <silent> ,ff :FufFile<cr>
+nmap <silent> ,fc :FufMruCmd<cr>
+nmap <silent> ,fm :FufMruFile<cr>
+nmap <silent> ,fp :FufFile ~/git/*<cr>
+
 "-----------------------------------------------------------------------------
 " FSwitch mappings
 "-----------------------------------------------------------------------------
@@ -370,7 +400,9 @@ nmap <silent> ,oJ :FSSplitBelow<CR>
 " Set up the window colors and size
 "-----------------------------------------------------------------------------
 if has("gui_running")
+if has("mac")
   exe "set guifont=" . g:main_font
+endif
   set antialias
   set background=dark
   colorscheme navajo-night "xoria256
