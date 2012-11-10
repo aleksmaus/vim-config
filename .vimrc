@@ -173,6 +173,13 @@ let java_allow_cpp_keywords = 1
 " System default for mappings is now the "," character
 let mapleader = ","
 
+" Shortcuts for the vim (linux) for copy/paste between vim and other apps
+if has("unix")
+    nmap <A-v> "+gP
+    imap <A-v> <esc><A-v>a
+    vmap <A-c> "+y
+endif
+
 " Wipe out all buffers
 nmap <silent> ,wa :1,9000bwipeout<cr>
 
@@ -345,8 +352,8 @@ if has("mac")
   let g:main_font = "Anonymous\\ Pro:h14"
   let g:small_font = "Anonymous\\ Pro:h2"
 else
-"  let g:main_font = "Monospace\\ 9"
-"  let g:small_font = "Monospace\\ 2"
+  let g:main_font = "Monospace\\ 9"
+  let g:small_font = "Monospace\\ 2"
 endif
 
 "-----------------------------------------------------------------------------
