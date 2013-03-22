@@ -375,6 +375,7 @@ let NERDTreeIgnore=[ '\.ncb$', '\.suo$', '\.vcproj\.RIMNET', '\.obj$',
                    \ '\.intermediate\.manifest$', '^mt.dep$' ]
 
 map ,r :NERDTreeFind<CR>
+nnoremap ,n :NERDTree .<CR>
 
 "-----------------------------------------------------------------------------
 " FuzzyFinder Settings
