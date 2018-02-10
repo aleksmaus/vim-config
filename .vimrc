@@ -3,6 +3,7 @@
 "
 
 filetype off
+call pathogen#infect()
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
@@ -10,6 +11,9 @@ call pathogen#helptags()
 filetype on
 filetype plugin on
 filetype indent on
+
+" Neo complete
+let g:neocomplete#enable_at_startup = 1
 
 " Disable vim swap files
 set noswapfile
@@ -161,11 +165,20 @@ set clipboard+=unnamed
 " Automatically read a file that has changed on disk
 set autoread
 
-set grepprg=grep\ -nH\ $*
+"set grepprg=grep\ -nH\ $*
 
 " Set the line numbering. Commented the relative number for now, might need to get used to it
 set number
 " set relativenumber
+
+let g:go_disable_autoinstall = 0
+
+" Highlight for go
+let g:go_highlight_functions = 1  
+let g:go_highlight_methods = 1  
+let g:go_highlight_structs = 1  
+let g:go_highlight_operators = 1  
+let g:go_highlight_build_constraints = 1 
 
 " Let the syntax highlighting for Java files allow cpp keywords
 let java_allow_cpp_keywords = 1
@@ -423,6 +436,11 @@ endif
       endif
       let g:vimrcloaded = 1
   endif
+else
+  set t_Co=256
+  let g:solarized_termcolors=256
+  set background=dark
+  colorscheme solarized
 endif
 :nohls
 
