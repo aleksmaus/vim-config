@@ -12,8 +12,11 @@ filetype on
 filetype plugin on
 filetype indent on
 
-" Neo complete
+" Neocomplete settings
 let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_auto_select = 1
+let g:neocomplete#enable_auto_delimiter=1
+set completeopt-=preview
 
 " Disable vim swap files
 set noswapfile
@@ -438,9 +441,15 @@ endif
   endif
 else
   set t_Co=256
-  let g:solarized_termcolors=256
+  "let g:solarized_termcolors=256
   set background=dark
-  colorscheme solarized
+  colorscheme xoria256
 endif
 :nohls
+
+" Set the different cursor for the insert and the normal mode
+if $TERM_PROGRAM =~ "iTerm"
+    let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
+    let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
+endif
 
